@@ -5,9 +5,66 @@
     <title>Transaction Details</title>
     <script type="application/javascript" src="js/pouchdb.min.js"></script>
     <link rel="stylesheet" href="css/style.css" type="text/css"> </head>
-
+    <meta charset="utf-8">
 <body>
-    <h3>Transaction Details</h3>
+    <div class="main_div">
+      <div class="section">
+        <h3 id="header-text">Transaction Details</h3>
+      </div>
+      <div class="section">
+        <div id="table-heading">
+          <h3 id="table-heading-h3">Transaction Receipt</h3>
+        </div>
+        <form class="" action="index.html" method="post">
+          <table id="record-display">
+            <tr class="odd">
+              <td>SOL ID:</td>
+              <td id="sol-id"></td>
+            </tr>
+            <tr class="even">
+              <td>BRANCH:</td>
+              <td id="branch">Kafanchan Road</td>
+            </tr>
+            <tr class="odd">
+              <td>TRANSACTION ID:</td>
+              <td id="trans-id"></td>
+            </tr>
+            <tr class="even">
+              <td>TRANSACTION DATE:</td>
+              <td id="trans-date"></td>
+            </tr>
+            <tr class="odd">
+              <td>ACCOUNT NUMBER:</td>
+              <td><input id="acct-num" type="text"/></td>
+            </tr>
+            <tr class="even">
+              <td>ACCOUNT NAME:</td>
+              <td id="acct-name"></td>
+            </tr>
+            <tr class="even">
+              <td>DESC OF TRANS:</td>
+              <td id="desc-of-trans"></td>
+            </tr>
+            <tr class="odd">
+              <td>NAME OF DEPOSITOR:</td>
+              <td id="depos-name"></td>
+            </tr>
+            <tr class="even">
+              <td>AMOUNT IN WORDS:</td>
+              <td id="amount-in-words"></td>
+            </tr>
+            <tr class="odd total">
+              <td>TOTAL:</td>
+              <td id="total"></td>
+            </tr>
+            <tr class="">
+              <td><button class="submit-bt" type="submit">Save Record</button></td>
+              <td><button class="submit-bt" type="button">Clear Fields</td>
+            </tr>
+          </table>
+        </form>
+      </div>
+    </div>
 
     <script type="application/javascript" src="js/acct_records.js"></script>
     <script type="application/javascript" src="js/index.js"></script>
