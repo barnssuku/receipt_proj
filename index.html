@@ -15,6 +15,9 @@
         <div id="table-heading">
           <h3 id="table-heading-h3">Transaction Receipt</h3>
         </div>
+        <div class="error-div">
+          <p id="error-display"></p>
+        </div>
         <form class="" action="index.html" method="post">
           <table id="record-display">
             <tr class="odd">
@@ -43,19 +46,25 @@
             </tr>
             <tr class="even">
               <td>DESC OF TRANS:</td>
-              <td id="desc-of-trans"></td>
+              <td id="desc-of-trans">
+                <select id="transaction" name="">
+                  <option value=""></option>
+                  <option value="deposit">Deposit</option>
+                  <option value="withdrawal">Withdrawal</option>
+                </select>
+              </td>
             </tr>
             <tr class="odd">
               <td>NAME OF DEPOSITOR:</td>
-              <td id="depos-name"></td>
+              <td><input type="text" id="depos-name"></td>
             </tr>
             <tr class="even">
               <td>AMOUNT IN WORDS:</td>
-              <td id="amount-in-words"></td>
+              <td><input type="text" id="amount-in-words"></td>
             </tr>
             <tr class="odd total">
               <td>TOTAL:</td>
-              <td id="total"></td>
+              <td><input type="text" id="total"></td>
             </tr>
             <tr class="">
               <td><button class="submit-bt" type="submit">Save Record</button></td>

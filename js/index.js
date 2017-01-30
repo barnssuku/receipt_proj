@@ -23,34 +23,51 @@ function generateSolID() {
 }
 
 function saveRecord(_id, solID, transID, transDateTime, acctNum, acctName, transDesc, depositor, amountWords, total) {
+  // write the code to check for empty fields bellow this line
+
+
     var record = {
-        "_id": _id
-        , "solID": solID
-        , "transID": transID
-        , "transDateTime": transDateTime
-        , "acctNum": acctNum
-        , "acctName": acctName
-        , "transDesc": transDesc
-        , "depositor": depositor
-        , "amountWords": amountWords
-        , "total": total
+        "_id": accountNum.innerHTML
+        , "solID": solID.innerHTML
+        , "transID": transID.innerHTML
+        , "transDateTime": transDate.innerHTML
+        , "acctNum": acctNum.value
+        , "acctName": acctName.innerHTML
+        , "transDesc": descOfTrans.value
+        , "depositor": nameOfDepos.value
+        , "amountWords": amountInWords.value
+        , "total": total.value
     };
     // Insert record into the database.
     db.put(record);
+
+    // If we are sure our data is stored onto the database
+    // we go ahead and clear out the fields for next entry.
+    console.log('Data stored.');
 }
-function checkEntry() {}
+function checkEntry() {
+
+}
 
 function getAccountName(){
   var accountNumString = accountNum.value;
   if (accountNumString == ''){
-    // This is for debug purposes
-    alert('Sorry: Please enter an account number');
+    // Clear any initial error message or
+    // account name assignment
+    errorDisplay.innerHTML = '';
+    accountName.innerHTML = '';
+    // Now do the error assigment.
+    errorDisplay.innerHTML = 'Sorry: Please enter an account number';
     return;
   }
   var digitSize = accountNumString.length;
   if (digitSize != 10){
-    // This is for debug purposes.
-    alert('Sorry: Account digits not complete.');
+    // Clear any initial error message or
+    // account name assignment
+    errorDisplay.innerHTML = '';
+    accountName.innerHTML = '';
+    // Now do the error assigment.
+    errorDisplay.innerHTML = 'Sorry: Account digits not complete.';
     return;
   }
 
@@ -65,8 +82,12 @@ function getAccountName(){
   for (var i = 0; i < accountDigitsArray.length; i = i + 1){
     digit = parseInt(i);
     if(digit == NaN){
-      // This is for debug purposes.
-      alert('Sorry: Account number not correct. Only digits allowed.');
+      // Clear any initial error message or
+      // account name assignment
+      errorDisplay.innerHTML = '';
+      accountName.innerHTML = '';
+      // Now do the error assigment.
+      errorDisplay.innerHTML = 'Sorry: Account number not correct. Only digits allowed.';
       return;
     }
   }
@@ -76,7 +97,15 @@ function getAccountName(){
   //var accountRecord = accounts.get(accountNumString);
   //console.log(accountRecord);
   accounts.get(accountNumString).then(function (doc) {
-    console.log(doc);
+    // Need to find a way to take care of situation
+    // were a wrong account number was entered.
+
+    // Clear any initial error message or
+    // account name assignment
+    errorDisplay.innerHTML = '';
+    accountName.innerHTML = '';
+    // Now do the assigment.
+    accountName.innerHTML = doc.acct_name;
   });
 }
 
@@ -86,10 +115,11 @@ var transID = document.getElementById('trans-id');
 var transDate = document.getElementById('trans-date');
 var accountNum = document.getElementById('acct-num');
 var accountName = document.getElementById('acct-name');
-var descOfTrans = document.getElementById('desc-of-trans');
+var descOfTrans = document.getElementById('transaction');
 var nameOfDepos = document.getElementById('depos-name');
 var amountInWords = document.getElementById('amount-in-words');
-var total = document.getElementsByClassName('total');
+var total = document.getElementById('total');
+var errorDisplay = document.getElementById('error-display');
 
 // Once application starts we will need part of our information
 // entered
