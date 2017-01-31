@@ -18,7 +18,6 @@
         <div class="error-div">
           <p id="error-display"></p>
         </div>
-        <form class="" action="index.html" method="post">
           <table id="record-display">
             <tr class="odd">
               <td>SOL ID:</td>
@@ -48,7 +47,7 @@
               <td>DESC OF TRANS:</td>
               <td id="desc-of-trans">
                 <select id="transaction" name="">
-                  <option value=""></option>
+                  <option value="empty"></option>
                   <option value="deposit">Deposit</option>
                   <option value="withdrawal">Withdrawal</option>
                 </select>
@@ -67,11 +66,10 @@
               <td><input type="text" id="total"></td>
             </tr>
             <tr class="">
-              <td><button class="submit-bt" type="submit">Save Record</button></td>
-              <td><button class="submit-bt" type="button">Clear Fields</td>
+              <td><button id="save-bt" type="button">Save Record</button></td>
+              <td><button id="clear-bt" type="button">Clear Fields</td>
             </tr>
           </table>
-        </form>
       </div>
     </div>
 

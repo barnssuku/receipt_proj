@@ -22,17 +22,17 @@ function generateSolID() {
     //return id;
 }
 
-function saveRecord(_id, solID, transID, transDateTime, acctNum, acctName, transDesc, depositor, amountWords, total) {
+function saveRecord() {
   // write the code to check for empty fields bellow this line
 
 
     var record = {
-        "_id": accountNum.innerHTML
+        "_id": accountNum.value
         , "solID": solID.innerHTML
         , "transID": transID.innerHTML
         , "transDateTime": transDate.innerHTML
-        , "acctNum": acctNum.value
-        , "acctName": acctName.innerHTML
+        , "acctNum": accountNum.value
+        , "acctName": accountName.innerHTML
         , "transDesc": descOfTrans.value
         , "depositor": nameOfDepos.value
         , "amountWords": amountInWords.value
@@ -43,10 +43,31 @@ function saveRecord(_id, solID, transID, transDateTime, acctNum, acctName, trans
 
     // If we are sure our data is stored onto the database
     // we go ahead and clear out the fields for next entry.
-    console.log('Data stored.');
+    console.log(record);
 }
+
 function checkEntry() {
 
+}
+
+function clearEntry(){
+  // We set the value of the fields to blank
+  // in anticipation for our next transaction.
+  // But new id's and transaction dates will be
+  // recalculated.
+  var solID = generateSolID();
+  solID.innerHTML = solID;
+  var transID = generateTransID();
+  transID.innerHTML = transID;
+  var transDate = generateDateTime();
+  transDate.innerHTML = transDate;
+  var clearValue = '';
+  accountNum.value = clearValue;
+  accountName.innerHTML = clearValue;
+  descOfTrans.value = clearValue;
+  nameOfDepos.value = clearValue;
+  amountInWords.value = clearValue;
+  total.value = clearValue;
 }
 
 function getAccountName(){
@@ -120,6 +141,9 @@ var nameOfDepos = document.getElementById('depos-name');
 var amountInWords = document.getElementById('amount-in-words');
 var total = document.getElementById('total');
 var errorDisplay = document.getElementById('error-display');
+// handlers for the buttons
+var saveBt = document.getElementById('save-bt');
+var clearBt = document.getElementById('clear-bt');
 
 // Once application starts we will need part of our information
 // entered
@@ -133,4 +157,17 @@ if (accountNum.addEventListener){ // for all major browsers.
   accountNum.addEventListener("blur", getAccountName, false);
 } else if (accountNum.attachEvent){ // for IE 8 and earlier versions
   accountNum.attachEvent("onblur", getAccountName);
+}
+
+// addEventListeners to the buttons
+if (clearBt.addEventListener){
+  clearBt.addEventListener('click', clearEntry, false);
+} else if (clearBt.attachEvent){
+  clearBt.attachEvent('onclick', clearEntry);
+}
+
+if (saveBt.addEventListener){
+  saveBt.addEventListener('click', saveRecord, false);
+} else if (saveBt.attachEvent){
+  saveBt.attachEvent('onclick', saveRecord);
 }
